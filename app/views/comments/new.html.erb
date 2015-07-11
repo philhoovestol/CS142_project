@@ -1,0 +1,13 @@
+<% if @imagename %>
+	<%= image_tag @imagename %>
+<% end %>
+
+<%= form_for(:comment, method: :post,
+    url: {action: :create, id: @photoid}) do |form| %>
+  <%= form.text_field(:text) %>
+  <%= form.submit "Submit new comment" %>
+<% end %>
+
+<% if flash[:errorm] %>
+	<%= flash[:errorm] %>
+<% end %>

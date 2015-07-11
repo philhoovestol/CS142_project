@@ -1,0 +1,30 @@
+<%= content_for :title, @currentuser.first_name + "'s pictures. What a rascal!" %>
+<% if @isInOwnPage %>
+	<%= link_to("New Photo", "/photos/new") %>
+<% end %>
+<% picnum = 0 %>
+<% @currentuser.photos.each do |photo| %>
+	<p> <%= photo.date_time %> </p>
+	<div class="container">
+		<%= image_tag photo.file_name %>
+		<% tagnum = 0 %>
+		<% @tagsets[picnum].each do |style_s| %>
+		
+			<div class="dummy" style = <%= style_s %> > </div>
+			<div class="tag" style= <%= style_s %> >
+				<%=photo.tags[tagnum].user.first_name%> <%=photo.tags[tagnum].user.last_name%>
+			</div>
+			<% tagnum = tagnum + 1 %>
+		<% end %>
+		<%picnum = picnum + 1 %>
+		<%= link_to("Add new comment", "/comments/new/" + photo.id.to_s) %>
+		<%= link_to("Tag a friend", "/taggers/tag/" + photo.id.to_s) %>
+		<% photo.comments.each do |comment| %>
+			<p>
+				<% user = comment.user %>
+				<%= link_to(user.first_name + " " + user.last_name, "/photos/index/" + user.id.to_s) %>
+				<%= comment.date_time %>: <%= comment.comment %> 
+			</p>
+		<% end %>
+	</div>
+<% end %>

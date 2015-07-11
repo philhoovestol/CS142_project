@@ -1,0 +1,19 @@
+<% content_for :title, "Look at These Pictures of People" %>
+
+<p>
+	search for a photo based on comment content or user tagged in photo
+</p>
+<input type="text" id="pic_search"></input>
+<div id="pic_results"></div>
+
+<br/>
+
+<% User.all.each do |user| %>
+	<%= link_to(user.first_name + " " + user.last_name, "/photos/index/" + user.id.to_s) %>
+<% end %>
+
+<%= javascript_include_tag "PhotoSearch", :type => "text/javascript" %>
+
+<script type="text/javascript">
+	var photo_searcher = PhotoSearch("pic_search", "pic_results",  "/photos/search?input=");
+</script>

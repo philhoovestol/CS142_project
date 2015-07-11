@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title> <%= yield :title %></title>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<% if session[:logged_user_id] == nil %>
+		<%= link_to("Login", {:controller => :users, :action => :login}) %>
+	<% else %>
+		Hi, <%= session[:logged_user_first] %>!
+	<% end %>
+	<%= link_to("Logout", {:controller => :users, :action => :logout}) %>
+
+	
+	<h1><%= yield :title %></h1>
+<%= yield %>
+
+</body>
+</html>

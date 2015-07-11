@@ -1,0 +1,30 @@
+<%= form_for(:user, method: :post,
+    url: {action: :create}) do |form| %>
+    <table class="form">
+      <tr>
+        <td><%= form.label(:first, "First Name:")%><td>
+        <td><%= form.text_field(:first) %><td>
+      </tr>
+      <tr>
+        <td><%= form.label(:last, "Last Name:")%><td>
+        <td><%= form.text_field(:last) %><td>
+      </tr>
+      <tr>
+        <td><%= form.label(:username, "Username:")%><td>
+        <td><%= form.text_field(:username) %><td>
+      </tr>
+      <tr>
+        <td><%= form.label(:pass1, "Password:")%><td>
+        <td><%= form.text_field(:pass1) %><td>
+      </tr>
+      <tr>
+        <td><%= form.label(:pass2, "Re-enter Password:")%><td>
+        <td><%= form.text_field(:pass2) %><td>
+      </tr>
+    <table>
+  <%= form.submit "Join the family!" %>
+<% end %>
+
+<% if flash[:errorm] %>
+  <%= flash[:errorm] %>
+<% end %>

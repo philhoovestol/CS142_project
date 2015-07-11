@@ -1,0 +1,24 @@
+<div id="container">
+	<%= image_tag(@imagename, id: "photo") %>
+	<div id="tagger">
+	</div>
+</div>
+<p>
+	Click and drag to select the area of the picture to tag
+</p>
+
+<%= form_for(:tag, method: :post,
+	url: {action: :create, id: @picID}) do |form| %>
+	<%= form.hidden_field(:x1) %>
+	<%= form.hidden_field(:y1) %>
+	<%= form.hidden_field(:wid) %>
+	<%= form.hidden_field(:hei) %>
+  Select user: <%= form.collection_select(:userID, User.all, :id, :fullname) %>
+ <%= submit_tag "Enter new tag" %>
+<% end %>
+
+<%= javascript_include_tag "Tagger", :type => "text/javascript" %>
+
+<script type="text/javascript">
+	var Tagger = new Tagger("container", "tagger", "tag_x1", "tag_y1", "tag_wid", "tag_hei");
+</script>

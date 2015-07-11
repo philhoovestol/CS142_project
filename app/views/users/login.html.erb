@@ -1,0 +1,12 @@
+<%= form_for(:loggedinuser, method: :post,
+    url: {action: :post_login}) do |form| %>
+  <%= form.text_field(:login) %>
+  <%= form.text_field(:password) %>
+  <%= form.submit "Log In!" %>
+<% end %>
+
+<%= link_to("Register as New User", "/users/new") %>
+
+<% if flash[:errorm] %>
+	<%= flash[:errorm] %>
+<% end %>

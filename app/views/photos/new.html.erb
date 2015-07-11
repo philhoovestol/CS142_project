@@ -1,0 +1,5 @@
+<%= form_for(:newphoto, method: :post,
+    url: {action: :create}) do |form| %>\
+  <%= form.file_field :photo %>
+  <%= form.submit "Upload photo" %>
+<% end %>
